@@ -17,12 +17,19 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-//    take in a value from one of the form inputs and returns information about whether the info is valid or not
+// take in a value from one of the form inputs and returns information about whether the info is valid or not
 // if the value passed into this function is empty>> return "Empty"
 // else if the value passed is not a number>> return "Not a Number"
 // else if the value passed IS a number>> return "Is a Number"
 //  ex: isNAN(testInput) will return true if testInput is NOT a number
 //  ex: isNAN()
+    if(testInput === ""){
+        return "Empty"
+    } else if(isNaN(Number(testInput))){
+        return "Not a number"
+    } else{
+        return "Is a number"
+    }
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
@@ -34,7 +41,17 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 // Order of operations:
 //  if any of the fields are empty>>send alert to user that all fields are required
 //  else if any fields are wrong data type>>send alert to user that input is invalid
-//  else in the case we pass both of these validations then we can update the shuttle requirements  
+//  else in the case we pass both of these validations then we can update the shuttle requirements 
+let fuel = document.getElementById("fuelStatus");
+let cargo = document.getElementById("cargoStatus");
+let pilotStatus = document.getElementById("pilotStatus");
+let copilotStatus = document.getElementById("copilotStatus");
+
+if (validateInput(pilot) === "Empty"|| validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
+    alert("All fields are required!");
+ } else if (validateInput(pilot)=== "Is a number" || validateInput(copilot)=== "Is a number" || validateInput(fuelLevel)=== "Not a number" || validateInput(cargoLevel)=== "Not a number"){
+    alert("Invalid input");
+}
 }
 
 async function myFetch() {
