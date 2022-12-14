@@ -46,11 +46,25 @@ let fuel = document.getElementById("fuelStatus");
 let cargo = document.getElementById("cargoStatus");
 let pilotStatus = document.getElementById("pilotStatus");
 let copilotStatus = document.getElementById("copilotStatus");
+let launchStatus = document.getElementById("launchStatus");
 
 if (validateInput(pilot) === "Empty"|| validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
     alert("All fields are required!");
  } else if (validateInput(pilot)=== "Is a number" || validateInput(copilot)=== "Is a number" || validateInput(fuelLevel)=== "Not a number" || validateInput(cargoLevel)=== "Not a number"){
     alert("Invalid input");
+} else {
+    list.style.visibility = "visible"
+    pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+    copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch`;
+    if(fuel < 10000 || cargo > 10000){
+        fuel.innerHTML = "Not enough fuel for the journey";
+        cargo.innerHTML = "Too much mass for the shuttle to take off"
+        launchStatus.innerHTML = "Shuttle is not ready for launch";
+        launchStatus.style.color = "red"
+    }else{
+        launchStatus.innerHTML = "Shuttle is ready for launch"
+        launchStatus.style.color = "green"
+    }
 }
 }
 
